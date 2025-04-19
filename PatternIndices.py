@@ -1,7 +1,7 @@
 #pattern_counter: count how often a specific pattern appears in a sequence
 genome_file=open('Vibrio_cholerae.txt', 'r')
-genome=genome_file.readlines()
-
+genome=genome_file.readline()
+#readlines gave no output, guess cause it is only one line in there
 
 def PatternIndices(pattern, sequence):
     """
