@@ -18,7 +18,7 @@ def FrequentWords(text, k):
 
 def FrequencyTable(text,k):
     freq_dict={}
-    for i in range (len(text)-k):
+    for i in range (len(text)-k+1):
         key=str(text[i:i+k])
         if key in freq_dict.keys():
             freq_dict[key]= freq_dict[key]+1
