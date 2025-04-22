@@ -1,0 +1,856 @@
+Floats: Python does NOT keep all the numbers you type in, and instead keeps a rough approximation of decimals
+Forcing an int from a float removes decimal, NO ROUNDING
+
+Mathematical expressions of mixed types: int first internally converted to float, then added/subtracted/multiplied/etc
+
+Division ALWAYS gives a float; except if you want to force it by using // instead of /: returns int
+
+Dividing two floats with//: gives result as an int and then converts to float -> so the result is number.0; with the number again having lost the float part on forced conversion
+
+Exponents: both int - returns int, otherwise: returns float
+
+
+Operator precedence
+If all operators (+-/*) have same precedence, the evaluation by Python will happen left-to-right
+Mul/div,modulo have prio over others
+If differing precedence: term evaluated by precedence
+	- Sign lower prio than * -> squaring something first adds - later if not clarified
+--> Python Documentation
+To avoid issues: GROUP your arithmetic expressions!
+
+Variables
+Can be assigned values with = operator
+
+If-else: add Pass  to tell Python to do nothing
+
+Local variables
+Only defined within the current function call, will not be the same when function is called again
+Calling these variables outside the function will not work! And having the variables of the same name also defined outside the function means they will have different values than the ones inside the function!
+
+Functions
+Return statement terminates function! Anything that comes after is not happening
+If no return statement, value of function result will be empty (in case you want to work with the result) and will return None!
+Same as with return and no statement after it
+You can set a variable inside a function to global with the keyword global before value assignment inside the function
+
+Boolean Logic
+Uses Boolean operators: NOT AND OR, with values True or False
+Has to be Uppercase for the values to be correct :)
+OR: One or both is True
+If both are False: OR is False
+
+AND: True if A and B are True
+NOT: True if variable is not True 
+Comparison operators: <, >, <=, >=, ==, !=
+If you use that between two values, or variables, it will return a Boolean value
+
+If statement: if x:
+(reads: if x== True)
+Can have 0 or more elif statements and a final else statement
+
+
+Docstrings: in between """   """. To explain WHAT is being done
+Comments: 
+# started by that symbol to explain HOW it is being done
+
+Do not use global variables if you can avoid it at all 
+Global constants: exception: they are written in all caps - global variable that is never updated, and NEVER change it during coding!!!!
+
+
+Variable and function names: should have at least three letters, start with lowercase letter, no uppercase letter, separate words with an underscore
+
+Python modules
+Can be loaded from external sources
+If you write print(Dir(name)), you can find information (=directory) on the module you specified
+If you wrote a python file, it can count as a module = simply write 'import filename' (without the '.py) to import it into your current file.
+Writing:
+Import module as md
+Gives a shorthand for the module that will be used from then on
+
+The datetime module
+Can handle days, times, timezones
+You can do comparison operations on the dates created - will give Boolean values as comparing normal numbers
+Subtraction can be done - difference between days
+Gives time delta object, can specify difference in which unit (e.g: days)
+Also has today() fnction to get current day
+Can't add two dates, but can add a timedelta object to a date
+
+CodeSkulptor3
+Rock-Spock-paper-lizard-scissors project
+
+CodeSkulptor3
+Final project for datetime task
+
+Python for data science, AI&Development
+
+Types
+Typecasting: int()
+Str()
+Float()
+Boolean: if cast to number => True=1, False=0, casting 0 and 1 as Boolean also possible
+Type() function returns type
+
+
+Strings and string operations
+--> look up documentation if needed
+Methods to replace information in strings -> f string, string.format() and %
+Raw string to correctly show \ (escape character)
+\ in code lets you wrap the code to next line so you don't have to write a very long line
+\n: newline
+\t: tab
+\\ to show \ normally in your string
+
+
+Regular expressions (RegEx)
+To use: import re
+Regex allow handling and woking with strings
+
+
+Lists and tuples
+Cloning a list:
+B = A[:]
+Adding to lists: extend can add several new elements, append adds one element - if given more, they are added as nested list
+Split string into list by .split(' '), between apostrophes is the delimiter to be split by
+
+Tuples:
+Immutable!
+Nested elements can be accessed by indexes:
+If tuple = (1, 2, ("pop", "rock") ,(3,4),("disco",(1,2)))
+ tuple[2][1][0] gives 'r' (first letter of 'rock')
+.find() (with argument to be found in the brackets)
+Returns the indices of where that argument is foun in a tuple
+
+Dictionaries
+Are kind of like lists, have keys and values
+Indicated by {}
+Keys must be immutable and unique, values can be immutable, mutable or duplicates.
+--> keys being a tuple is possible!
+Key-value pairs are separated by comma:
+Dict={"key1":1, "key2":2}
+Keys function like indices: if you call Dict['key1'] it will return 1
+
+Adding new entry: 
+Dict['key3']=3
+
+Delete entry: 
+Del(Dict['key1'])
+
+Verify existence of element: 
+'key1' in Dict
+Will return True if in Dict, False if not
+Dict.keys() will return all keys of a dictionary
+.values() will return all values
+
+
+Sets
+Also a collection
+Unordered, can contain different Python types, but only unique elements
+Defined by {}, but no position recorded 
+Convert list to set: set(list)
+When set is created, duplicates are removed
+Adding to set"
+Set.add()
+Remove element: set.remove()
+Both functions have argument for what is to be added/removed
+In function also implemented here: 
+Returns True if contained in Set, False if not.
+
+Mathematical operations between sets:
+Set3 = set1&set2
+--> all elements in both sets are now new set
+
+Unite values of two values: 
+Set1.union(set2)
+
+Check if a set is subset of other one -> issubset
+Same with issuperset
+Find differences between sets with set1.difference(set2)
+
+Conditions and Branching
+Mathematical operators: =,<,> can be used to compare values
+!= not equal
+And == 
+>= greater than or equal to
+<= smaller than or equal to
+To compare strings too
+--> use in if statements
+
+Loops
+For, while
+For variable in (function, range,…):
+	Put stuff in here
+
+For is for when we know how many repetitions (indices) we have.
+
+While variable (condition that is true):
+	Stuff that will be done while condition true; 
+	Increase counter by one if you have one
+	
+While is for when we do not know how may iterations come, but have a condition to check.
+
+Range() is great way to keep track of iterations in a loop :)
+Returns a range object, not a list
+
+
+Python native functions
+Sorted: returns a new, sorted, list or tuple
+Sort:  returns the original list or tuple in a sorted order
+
+
+Exception handling:
+Try… except statements
+Try:
+	Call function etc
+Except ZeroDivisionError:
+	Put stuff for what kind of errors can be raised, eg dividing by zero
+	Put output (eg, error message)
+Can also be generic Except with no Exception type behind it
+
+Else:
+	Code to be executed if no exception
+Finally:
+	Code to execute at the end of try/except no matter what
+	
+Add output regardless of exception being raised
+	
+Objects and Classes
+An object is an instance of a specific type (-> int, float, str, list,….)
+Methods: a class or type's methods are functions that every instance of that class/type provide
+--> how to interact with the data of an object
+--> example: .sort()
+
+
+Creating your own classes and types
+Add attributes to the class
+Class <class name> (class parent):  parent: eg object
+
+Def __init__(self, attr1,attr2): #constructor method
+	Self_attr1 = value1
+	Self.attr2 = value2
+	
+	
+Creating new objects of a class by calling the class_name() function with values given inside the brackets for attributes
+
+In class constructor, default attribute values can be given in (self, attr1 = 'x', attr2 = 10) for example
+To get attributes of an object: dir(object_name)
+You can add object methods in the class definition (aftr constructor method), too!
+
+
+Other way to call object methods:
+Assigning the method reference to a variable.
+method_reference = object1.method1 assigns the method method1 of object1 to the variable method_reference.
+Later, call the method using the variable like this: result3 = method_reference(param1_value, param2_value, …).
+
+Assigning object methods to variables
+method_reference = object1.method1  # Assign the method to a variable
+result3 = method_reference(param1_value, param2_value, ...)
+
+Modifying an attribute can be later done via object1.attribute1 = new_value
+
+Reading files with Open 
+--> plain text files:
+File = open('file path')
+See mode ('r' for 'read', 'w' for 'writing', 'a' for appending) to add as argument in open function
+Read() to store all file data in a string
+Close file when done (file.close())
+You can print complete file content with print(file)
+
+Readline() to read (or print) one line of the file --> option to put in for loop :)
+You can also limit the readline with number of character to read (as argument)
+Readlines() reads all lines of the doc and stores each line as separate string in a list
+
+1. while True:
+2.     line = file.readline()
+3.     if not line:
+4.         break  # Stop when there are no more lines to read
+5.     print(line)
+
+How to read a document line by line
+
+Best practise:
+With open('filename', 'r') as file:
+	#indented code here
+	
+With automatically closes the file after operations in codeblock are done
+
+How to read specific positions: file.seek() with argument being a 0-based byte index (??)
+File.read() can also read only specific umber of characters (pass number as argument)
+If those are saved in variable, you can use them later on
+
+Writing in a file
+Open with 'w' attribute, or 'a' for append.
+You can, same as readin, also write (file.write(argument)) in a loop
+Close file at the end, too!
+Appending will add more text after existing one
+
+You can also open one file, read it, and write contents into a second file (which is opened in writing mode)
+
+Other opening modes also exist -> exclusive creation, reading+ writing and others
+w+ (reading and writing) will override existing data, r+ will add to existing data
+
+Opening a file with 'w' will put your cursor at the beginning of the file, write what you want and delete all the stoff that comes after (prior content). Opening with 'a' puts your curso at the end of the file, to write stuff after existing content.
+
+If you use 'r+' mode, you can use .truncate() at end of your operations to remove what was there before you wrote 
+
+the annoyingly complicated exercise to read a file, remove 'nonactive' members from a list and add to list of nonactive members:
+def cleanFiles(currentmem, exmem):
+    all_members=[]
+    # TODO: Open the currentMem file as in r+ mode
+    with open(currentmem, 'r+') as readfile:
+        
+        for line in readfile.readlines():
+            all_members.append(line)   
+        header=all_members[0]
+        all_members.pop(0)
+        print(header)
+        readfile.seek(0)
+        readfile.truncate()
+        readfile.write(header)
+        with open(exmem, 'a+') as writefile:
+            for i in range(0,len(all_members)):
+                if 'no' in all_members[i]:
+                    writefile.write(all_members[i])
+                else: 
+                    readfile.write(all_members[i])
+            #print(all_members)
+                     
+        return readfile, writefile    
+
+Pandas
+To read in csv files
+Import pandas as pd (--> to shorten the pandas. Method call part)
+
+Splitting the dataframe: assigning new dataframe
+New_df = df[['col1', 'col2', 'col5', 'col6']]
+
+Accessing a cell element: df.iloc[row index][column index]
+Counting starts at [0][0]!!
+Indices can be changed with df.index=[list_of_values (can be characters, too!]
+
+A dataframe can be sliced and assigned to a new one:
+z= df.iloc[0:2, 0:3]
+
+Or, with loc:
+Z = df.loc[0:2, 'header1':'headerx'] --> using header names instead of indices
+
+Working with the data
+Df['col_header'].unique() returns list of unique values
+
+Boolean operations:
+Df['col_header']>=< something
+Returns True or False
+
+Code example: title_after_1900 = df[df['Release Year'] > 1900]
+--> the outer bracket lets it transfer also the column header, not just the values in the column
+
+Can save values returning True to another dataframe, and then save to_csv ('example.csv')
+
+
+Numpy
+Basis for Pandas, a 1D array is the simpler form
+Import numpy
+A = numpy.array([1,2,3])
+-> all data inside array has to have same type
+Dtype to see which type is in the array
+Type(a) gives ndarray
+
+Can also be sliced with index, and assigned to new array
+
+One use of numpy: vector addition/subtraction; vector multiplication with a scalar, vector multiplication,...
+Broadcasting: adding a constant to each value in an array: u=a+1
+-> look up numpy functions!!
+Np,sin, np.dot, np.linspace
+-> generating numbers with even intervals
+Useful to then plot alues as x!
+
+Attributes: size, dtype, ndim, shape
+
+Use of numpy is way faster and less code-intensive than with normal lists :)
+
+Multidimensional numpy arrays
+--> basically a nested list; each nested list is one row
+Column axis: 0, row axis: 1
+Matrices can be added, if same dimensions
+--> see matrix mathematics if in doubt.
+Hadamard product is diffrent from usual matrix multiplication (dot product), np.dot() function
+
+APIs: Application Program Interfaces
+Software piece to let different softwares communicate with each other
+REST APIs: Representational State Transfer
+To interact with webservices.
+Here: my program = client, webservice = resource. API governs input and output from or to me
+HTTP files use our request (=what API makes out of our input)
+
+Python package: PyCoinGecko
+Which can get us data from the web
+-> to make data readable, we can use pandas packages for timeseries data etc
+
+
+Usage of an API (practical lab)
+# Extract tables from webpage using Pandas. Retain table number 3 as the required dataframe.
+tables = pd.read_html(URL)
+data_frame = tables[3]
+# Replace the column headers with column numbers
+data_frame.columns = range(data_frame.shape[1])
+
+# Retain columns with index 0 and 2 (name of country and value of GDP quoted by IMF)
+data_frame = data_frame[[0, 2]]
+#data_frame
+# Retain the Rows with index 1 to 10, indicating the top 10 economies of the world.
+data_frame=data_frame.iloc[0:11,]
+
+# Assign column names as "Country" and "GDP (Million USD)"
+data_frame.columns=('Country', 'GDP (Million USD)')
+data_frame
+
+HTTP
+URL: = uniform resource locator
+HTTP protocol is general information transmission protocol
+Rest API request get transferred via HTTP 
+HTTP message also used to transfer the requested resource to the client
+A web adress usually starts with: HTTP:// then comes website address , then path on the web server (/start/logo.png)
+
+Request and Response
+Request: has a start line, header and a body
+Response the same
+Body: in response, the html doc, for example
+
+Status codes indicate response status
+--> 4xx means client errors! :))
+500: server error
+HTTP also has different methods
+Eg GET, POST, PUT, DELETE 
+-> can also be used via Python!
+
+HTTP request library in Python
+Request module:
+Httplib, urllib
+
+_________
+Import requests # to import the library containing above modules
+
+From bs4 import BeautifulSoup #for data retrieval from the requested data
+
+_________
+Url = 'this is an url path'
+You can do operations on this one, e.g. Get() to get the URL
+Or, .status_code to get the status of the url (-> available?)
+Find request header and body
+-> GET request does not have a body!
+The request returns all the information on the requested URL (-> text, media, but also HTML structure)
+Parsing requested data: BeautifulSoup (Python module) can make a structured representation of HTML content to mainpulate, view etc
+--> extract the data we want:search for HTML tags, attributes, pattterns to find specific data, eg text, images, tables,...
+
+Data transformation:
+Remoce HTML tags from texts, convert data formats, clean up data
+
+Data storage: databases, JSOn files, csv
+Automation: e.g. For recurrent data retrieval from websites that regularly update ther content
+
+
+Can look at request header as a Python dictionary
+For lab use for practise here: use httpbin.org append function:
+'http://httpbin.org/get'
+
+Json() function can format json file to retur a dictionary
+
+POST request: sends data to a server, but data is in request body
+We can code the payload to be sent in a dictionary, which is argument of post function
+
+Code Example: 
+
+6. import requests
+7. from bs4 import BeautifulSoup
+8. # Specify the URL of the webpage you want to scrape
+9. url = 'https://en.wikipedia.org/wiki/IBM'
+10. # Send an HTTP GET request to the webpage
+11. response = requests.get(url)
+12. # Store the HTML content in a variable
+13. html_content = response.text
+14. # Create a BeautifulSoup object to parse the HTML
+15. soup = BeautifulSoup(html_content, 'html.parser')
+16. # Display a snippet of the HTML content
+17. print(html_content[:500])
+
+
+
+18. # Find all <a> tags (anchor tags) in the HTML
+19. links = soup.find_all('a')
+20. # Iterate through the list of links and print their text
+21. for the link in links:
+22.     print(link.text)
+
+Pandas read_html for table extraction
+Basically imports tables from HTML format into pandas format, for data analysis
+
+PIL library?
+Ipython.display?
+
+Fetching other response objects (e.g., images)
+Get request also with URL to the image in question -> you can also look at the header. In Content-Type, it will show 'image/png'
+
+Image saves data as bytes-like object (?)
+To use it, it first has to be saved as a file object: define a path in a variable path=os.path.join(os.getcwd(),'image.png')
+Then save it with open method:
+with open(path,'wb') as f:
+    f.write(r.content)
+'wb' meaning: opening file in binary mode -> saved in an unaltered form. If saved as text type, it would mean that any line ends get edited to system-specific enf-of-line character, which will corrupt e.g. Images or exe files.
+The content is the result of the get request data
+
+Query Strings
+Making a get request with URL parameters
+To the end of an URL (in the string in python), you can add /get to specify you wishe to execute a get request.
+Additionally, you can add parameters in a dictionary. Then, in python, you pass as arguments to the .get() method: the url string with /get appended, and a dictionary containing specifiers
+
+-> specifiers will be added in Url name if you look at it with .url method
+
+Similar with POST requests: there, the specifiers will show up in the body of the url, not the request
+
+
+API example practise
+Pros for API use:
+Automation-friendly, efficient
+
+Con(s): 
+If API not securely programmed, can result in data breeches
+
+Random User API:
+Python package under same name exists - to generate random names for testing purposes (can even make up age, gender, email adress,...)
+
+-> install randomuser and pandas via pip if not done
+
+from randomuser import RandomUser
+import pandas as pd
+
+r = RandomUser() #RandomUser object -> on this, randomUser functions can be done eg generate_users()
+
+for user in some_list:
+    print (user.get_picture()) #to get an URL to a random photo of the random user generated
+
+To save these informations somewhere: make a dictionary, iterate through randomuser list and append to the Dictionary list by {key:user.get_variable(), Key2:user.get_variable2() ...}
+And cast as pandas dataframe, then return that one
+
+Fruityvice API
+Works through requests package
+-> needs requests and json packages imported
+
+data = requests.get("https://web.archive.org/web/20240929211114/https://fruityvice.com/api/fruit/all")
+To get the fruityvice data, formatted as json file
+results = json.loads(data.text) #get results via json.loads() function
+Cast as .text!!! For it to be read by the function!!
+
+Convert to dataframe for readability
+-> some columns can be a 'nested Json format' (=dictionary in a dictionary, so most data is legible as normal dataframe, but some cells still contain a dictionary
+
+-> json.normalize(dataframe) to 'flatten' -> the keys of the sub-dictionary will be their own dataframe column
+
+Those dataframes can also be sliced, of course
+
+Beautiful Soup:
+You can navigate to different parts of the HTML file encoded in the bs object, by tag header eg, and then find that tag's child/parent/sibling
+
+Find_all() function: finds all objects with a certain tag (argument of find_all function) and returns as an iterable Python object
+-> also to filter the data you get; can also be used to filter on a tag's attributes
+(-> filter for which ones have a link, or a specific value in the content of a tag)
+Use string attribute in find_all arguments to search the content of tags
+If several tags exist: the called object will be the one that occurs first
+To differentiate: if the objects have attributes in the tag, we can filter in Python for a different tag (not the first one).
+If the word used as attribute is a keyword in Python, you have to modify it with underscore: class_ = ' '
+
+.string function to get the content of a tag 
+Actually gives a NavigableString object (difference?), which can be cast to a Python string 
+
+
+Other webscraping packages:
+Scrapy
+Selenium
+
+Pandas:
+Use read_html(url) to parse tables from html format into a pandas-readable format
+
+Problem: some tables might not be directly visible as table
+Hyperlink texts and annotations in the tables also get scraped
+
+Working with different file formats
+--> excurs file extensions
+
+Pandas can read, e.g.: 
+.csv (read_csv(file_variable))
+You might have to add headrs maually, otherwise the headers will be the first row
+
+.xml: not directly pandas-readable but:
+Import pandas as pd
+Import xml.etree.ElementTree as etree
+Tree = etree.parse('filename')
+Root = tree.getroot()
+Columns = ['name1','name2','name3']
+Df = pd.DataFrame(columns = columns)
+
+Can then somehow iterate through the tree nodes to add to dataframe
+
+Json: read with 
+Import json
+With open ...
+
+
+Data Engineering
+Several steps to Data Engineering process:
+1: Extraction: - getting data from multiple sources -> web scraping, or gathering data from different formats (JSON, CSV, XLSX,...)
+2: Transformation: - removing unnecessary data, converting data into a uniform format -> so that all data, even from different sources, are formatted the same
+3: Loading: - Loading data inside a data warehouse (a place that contains large volumes of data, which is accessed to gather insights)
+
+Data storage types
+Binary vs ASCII file?
+Formats? Tabular, 
+
+Binary file types
+CSV files
+Look up .transform() function of pandas?
+Root function also possibility in transform()
+
+JSON (javascript object notation)
+Collection of name-value pairs
+And ordered list of values
+
+--> the pairs are like Python Dictionaries
+
+Writing in a JSON file: json.dump()
+Two arguments: dictionary, file_pointer
+-> pointer of the file opened in append or write mode
+With open ('person.json', 'w') as f:
+	Json.dump(person, f)
+	
+Json.dumps: serialising - converting dictionary to JSON object
+-> args: dictionary, indent(number of units for indentation)
+
+Reading JSON data to a file: = loading
+Open json file with 'r', use json.Load(file)
+
+XLSX
+With pd.read_excel()
+
+What is await command
+Await: pauses execution of a coroutine until the result is available - to save ressources so other tasks can run at that time
+Coroutine: function with ability to pause its execution when encountering an operation that may take a while to complete
+--> async def
+Use await in the function for the parts that should cause a pause, outside of a coroutine it is NOT valid!
+Use of asyncio() also possible to start a coroutine event (and then close it)
+
+XML
+Creating XML file structure:
+import xml.etree.ElementTree as ET
+
+# create the file structure
+employee = ET.Element('employee')
+details = ET.SubElement(employee, 'details')
+first = ET.SubElement(details, 'firstname')
+second = ET.SubElement(details, 'lastname')
+third = ET.SubElement(details, 'age')
+first.text = 'Shiv'
+second.text = 'Mishra'
+third.text = '23'
+
+# create a new XML file with the results
+mydata1 = ET.ElementTree(employee)
+# myfile = open("items2.xml", "wb")
+# myfile.write(mydata)
+with open("new_sample.xml", "wb") as files:
+    mydata1.write(files)
+
+
+Parsing the file:
+# Parse the XML file
+tree = etree.parse("Sample-employee-XML-file.xml")
+
+# Get the root of the XML tree
+root = tree.getroot()
+
+# Define the columns for the DataFrame
+columns = ["firstname", "lastname", "title", "division", "building", "room"]
+
+# Initialize an empty DataFrame
+datatframe = pd.DataFrame(columns=columns)
+
+# Iterate through each node in the XML root
+for node in root:
+    # Extract text from each element
+    firstname = node.find("firstname").text
+    lastname = node.find("lastname").text
+    title = node.find("title").text
+    division = node.find("division").text
+    building = node.find("building").text
+    room = node.find("room").text
+    
+    # Create a DataFrame for the current row
+    row_df = pd.DataFrame([[firstname, lastname, title, division, building, room]], columns=columns)
+    
+    # Concatenate with the existing DataFrame
+    datatframe = pd.concat([datatframe, row_df], ignore_index=True)
+
+Also possible to read an xml file with pd.read_xml(filename string, xpath)
+
+Saving data
+To_csv: writing to csv file
+(same for excel and other formats)
+
+ASCII file types
+Non-human-readable characrers -> e.g. JPEG, GIF, MP3, Word, PDF
+
+Use PIL (Python Imaging Library) for that:
+
+From PIL import Image
+
+What is async def (function)
+
+Data Transformation
+Using df.info() to get counts of non-null values, indexes, dtypes
+Use df.describe() to get counts, mean, std, percentiles per column
+--> for numeric values, for strings, it returns something else
+
+Handling missing values:
+.isnull()
+.ntnull()
+
+Both detect if an entry is missing data. 
+Returns a new dataframe with True or False values to indicate if value is missing data
+For isnull(): True = missing data, False = no missing data
+
+Counting number of missing entries per column automatable:
+for column in missing_data.columns.values.tolist():
+    print(column)
+    print (missing_data[column].value_counts()) #value_counts() count 'True' values
+    print("")    
+
+Check data format
+Df.dtype() to get type, df.astype() to change the type
+
+Git and GitHub
+System for collaborative coding, allows distributed version control system -> tracks changes in code
+GitHub is a webhosting service for Git repositories
+Version Control allows return to former versions
+SSH: secure remote login protocol
+Repository: contains project folders
+Fork: Copy of a repository
+Pull requet: to request for review and approval
+Working directory: contains files and subdirectories
+Commit: Snapshot of project's state at a certain point in time, with comments
+Branch: separate line of development - to work on features or fixes independently
+Merge: combines changes from one branch into another (mostly from feature branch to main branch)
+Clone: local copy of a remote Git repository on your computer
+
+Git DVCS allows agile development
+-> controlled access scope  for team members
+Main branch =^deployable code, side branches are fixes/feature development
+
+GitHub: hosted by a subsidiary of Microsoft
+
+GitHub repositories
+--> how to sign up and create an account; the website also has quickstart guides and README files
+
+GitHub Branches
+When two branches are being changed, they can be merged into one again by identifying the tips of the branches and adding all changes into one banch again.
+
+Use 'commit' to merge or save changes
+Commit Messages: Don't end with a period, keep under 50 characters. Use active voice and use the extended description field for longer explanation
+'Pull' to propose changes for review, even if unfinished
+Pull request can be assigned to a specific user
+If you don't own the branch, a Pull request is automatically opened
+
+Git workflows
+Push
+Updating files in the repository from what is in your working directory
+Pull
+Updating you working directory from repository files
+Branch Creation
+Isolated developing space without affecting the deployed code
+After developing the feature, developed code gets moved to 'staging area' from where they can be committed to repository
+After committing, they become part of the branch
+Pull request
+Request to review your code, after review it can be merged back into main branch
+
+You can have local git repository (is that working directory??) and push to remote repository from there
+
+Git Commands
+CMD commands: mkdir: make new directory
+Cd <directory name> to navigate there
+Git init to initialise an empty git repository from it
+Put file into that folder (repository)
+Git add <filename> to add a file you put in that directory to the staging area (= changes now ready to be committed)
+Git commit -m: commit to save, -m "   " in between the quotes you put your commit message
+
+Git log to check previous changes - you can see commit history
+Branches:
+Git checkout (branchname) to switch between branches
+
+Git status
+To see all change in working directory
+Git merge to merge feature branch with main branch (after merge comes the branch name)
+
+Cloning
+Go to directory to be cloned
+Green button "Clone": clone with HTTPS copy URL
+On local machine, change to working directory
+Git clone <URL>
+Syncing local changes:
+First git add <files>
+Run git commit -m <message>
+
+Use git push to sync to remote repository
+
+Origin: my fork of repositories
+Upstream: original copy of code
+
+Forking: making a clone and use as base for my work
+When changes are done, make pull request to original project owner for whether they want to keep changes or not
+
+Syncing a fork
+Create local clone of project
+Access remote repository: git remote -v
+Then
+Git remote add upstream <clone directory> to add your (cloned) fork
+Original repository is now labelled upstream
+Git fetch upstream and git merge upstream to operate between fork and remote repo
+Git pull upstream can merge stuff that might not be desired
+
+
+Forking vs Cloning
+When you want to create a derivative of an existing project: fork -> make new origin from that fork so you can alter that one for new functionalities on top of original 
+Merging changes only works via pull request if you fdon't have write access to that repo!
+
+After you added the changes to the origin branch and the are committed, they can be merged back into Upstream
+
+Cloning: to give someone access to your repos
+-> clone of Origin, developer can do stuff in their copy, push changes to Origin, reviewer reviews to see if it should be added to Upstream
+
+
+GitHub roles
+Integrator:
+Add changes made by others from the project, review changes
+
+Repo administrator:
+Sets ups and maintains access for developers; configures servers, mail, index settings,...
+
+GitHub access token
+
+Pull request URL:
+Bug fix revert Pull Request by Isa-cat · Pull Request #42209 · ibm-developer-skills-network/jbbmo-Introduction-to-Git-and-GitHub
+Branches URL:
+Branches · Isa-cat/jbbmo-Introduction-to-Git-and-GitHub
+URL project repository:
+Isa-cat/Project_code_simpl_interest
+Forked repository URL:
+https://github.com/Isa-cat/jbbmo-Introduction-to-Git-and-GitHub.git
+
+When logging in in a console with the toke, the token will be HIDDEN! No need to paste several times...
+Will be used for password instead of github password!
+
+--set-upstream:
+This flag is used to set up a tracking relationship between the local branch and the remote branch allowing you to use git push and git pull without specifying the remote branch every time. 
+This streamlines future operations by eliminating the requirement to explicitly mention the name of the remote branch
+
+
+
+
+
+
+
