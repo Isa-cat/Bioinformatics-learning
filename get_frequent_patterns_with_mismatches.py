@@ -6,20 +6,20 @@ maximum value in the dictionary is found, returns the patterns occuring at that 
 
 def Generate_Neighbors(pattern, d):
     patterns=set()
+    nucleotides='AGCT'
     if d == 0:
         return pattern
     elif d == 1:
-        return {'a','C','G','T'}
-    for i in range (len(pattern)):
-        suffix_neighbors=Generate_Neighbors(pattern[1:],d)
-        for neighbor in suffix_neighbors:
-            if Hamming_Distance(neighbor, pattern[i:])<d:
-                patterns.append('A'+neighbor)
-                patterns.append('C'+neighbor)
-                patterns.append('G'+neighbor)
-                patterns.append('T'+neighbor)
-            else:
-                patterns.append(pattern[0]+neighbor)
+        return {'A','C','G','T'}
+    else:
+        for i in range (len(pattern)):
+            suffix_neighbors=Generate_Neighbors(pattern[1:],d)
+            for neighbor in suffix_neighbors:
+                if Hamming_Distance(neighbor, pattern[1:])<d:
+                    for nuc in nucleotide:
+                        patterns.add(nuc+neighbor)
+                else:
+                    patterns.add(pattern[0]+neighbor)
     return patterns
 
 def Hamming_Distance(seq1,seq2):
@@ -50,7 +50,7 @@ def MismatchedFrequentWords(text, k, d):
                 freq_map[key]= freq_map[key]+1
             else:
                 freq_map[key]=1
-    max_freq = MaxMap(freq_map)
+    max_freq = max(freq_map.values())
     #print(max_freq)
     for key in freq_map:
         if freq_map[key] == max_freq:
@@ -62,3 +62,4 @@ def MismatchedFrequentWords(text, k, d):
 def MaxMap(freq_map):
     return max(freq_map.values())
 MismatchedFrequentWords('TTCAGGGGGGGGTGTTTTTTTTTGGTGGGGTTCATTCAGCGGCGTTCAGCGGGTGGGTGGGGTTTGCGGCGGCGGGGTTTGGTGGCGGCGTTCATTTGGTGGGTGGCGGGGTTCATTCAGCGGGGTTCATTTGCGTTTGGTGGGTGTTCAGGGGCGTTTGGTGTTCAGGGGGTGGCGTTCAGCGTTCATTTTTCATTTTTCAGGTGGGTGGGTGTTTGGGGCGTTCATTTGCGTTTGGGTTTGGGGGTGGCGGGTGTTCAGGTGTTTGGTGGCGGGGTTTGCGTTCAGGTGGCGGCGTTCAGGGTTCAGGGTTCATTCAGGGTTCAGGTGTTTTTTTTCAGGTGTTTGGGGCGGGTG', 5, 3)
+
