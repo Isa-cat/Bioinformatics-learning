@@ -10,7 +10,7 @@ Frequent words problem, allowing up to d mismatches: goes over text, for each pa
 each of the patterns is added to the freqmap dict if not yet in, gets one added to them.
 maximum value in the dictionary is found, returns the patterns occuring at that value.
 """
-
+from collections import defaultdict
 def Generate_Neighbors(pattern, d):
     patterns=set()
     nucleotides=['A','G','C','T']
@@ -50,15 +50,11 @@ def MismatchedFrequentWords(text, k, d):
     return those patterns
     """
     frequent_words = []
-    freq_map={}
+    freq_map=defaultdict(int) #automatically assigns 0 value to unknown keys
     for i in range (len(text)-k+1):
         neighbor_patterns=Generate_Neighbors(text[i:i+k],d)
         for key in neighbor_patterns:
-            #print(key)
-            if key in freq_map.keys():
-                freq_map[key]= freq_map[key]+1
-            else:
-                freq_map[key]=1
+            freq_map[key]+= 1
     max_freq = max(freq_map.values())
     #print(max_freq)
     for key in freq_map:
