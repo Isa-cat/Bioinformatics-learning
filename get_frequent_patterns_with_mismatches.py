@@ -5,6 +5,12 @@ maximum value in the dictionary is found, returns the patterns occuring at that 
 """
 
 
+"""
+Frequent words problem, allowing up to d mismatches: goes over text, for each pattern makes a set of neighbors (patterns with d mismatches)
+each of the patterns is added to the freqmap dict if not yet in, gets one added to them.
+maximum value in the dictionary is found, returns the patterns occuring at that value.
+"""
+
 def Generate_Neighbors(pattern, d):
     patterns=set()
     nucleotides=['A','G','C','T']
@@ -17,7 +23,7 @@ def Generate_Neighbors(pattern, d):
     suffix_neighbors=Generate_Neighbors(pattern[1:],int(d))
            
     for neighbor in suffix_neighbors:
-        if Hamming_Distance(neighbor, pattern[1:]) <= d:
+        if Hamming_Distance(neighbor, pattern[1:]) < d:
             for nuc in nucleotides:
                 patterns.add(nuc+neighbor)
         else:
@@ -64,8 +70,11 @@ def MismatchedFrequentWords(text, k, d):
 
 def MaxMap(freq_map):
     return max(freq_map.values())
-genome_file=open('dataset_30278_6 (1).txt','r')
+
+
+genome_file=open('dataset_30278_9 (1).txt','r')
 filedata=genome_file.readlines()
 genome_file.close()
-MismatchedFrequentWords(filedata[1].strip(), filedata[0].strip(),int(filedata[2].strip())) #strip() to remove any whitespace characters   
+MismatchedFrequentWords(filedata[0].strip(), 5,3) #strip() to remove any whitespace characters
+
 
