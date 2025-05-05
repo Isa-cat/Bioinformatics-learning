@@ -4,24 +4,27 @@ each of the patterns is added to the freqmap dict if not yet in, gets one added 
 maximum value in the dictionary is found, returns the patterns occuring at that value.
 """
 
+
 def Generate_Neighbors(pattern, d):
     patterns=set()
-    nucleotides='AGCT'
-    if d == 0:
+    nucleotides=['A','G','C','T']
+    if d == 0: #if no deviation allowed, no neighbors, only pattern
         return pattern
-    elif d == 1:
-        return {'A','C','G','T'}
-    else:
-        for i in range (len(pattern)):
-            suffix_neighbors=Generate_Neighbors(pattern[1:],d)
-            for neighbor in suffix_neighbors:
-                if Hamming_Distance(neighbor, pattern[1:])<d:
-                    for nuc in nucleotide:
-                        patterns.add(nuc+neighbor)
-                else:
-                    patterns.add(pattern[0]+neighbor)
+    #elif d == 1:
+        #return {'A','C','G','T'}
+    elif len(pattern)==0:
+        return {''}
+    suffix_neighbors=Generate_Neighbors(pattern[1:],int(d))
+           
+    for neighbor in suffix_neighbors:
+        if Hamming_Distance(neighbor, pattern[1:]) <= d:
+            for nuc in nucleotides:
+                patterns.add(nuc+neighbor)
+        else:
+            patterns.add(pattern[0]+neighbor)
     return patterns
 
+    
 def Hamming_Distance(seq1,seq2):
     hamming_dist=0
     if len(seq1) == len(seq2):
@@ -32,7 +35,7 @@ def Hamming_Distance(seq1,seq2):
                 hamming_dist+=1
     else:
         return('Please provide two sequence of same length.')
-    return hamming_dist
+    return int(hamming_dist)
 
 def MismatchedFrequentWords(text, k, d):
     """
@@ -45,7 +48,7 @@ def MismatchedFrequentWords(text, k, d):
     for i in range (len(text)-k+1):
         neighbor_patterns=Generate_Neighbors(text[i:i+k],d)
         for key in neighbor_patterns:
-            print(key)
+            #print(key)
             if key in freq_map.keys():
                 freq_map[key]= freq_map[key]+1
             else:
@@ -61,5 +64,8 @@ def MismatchedFrequentWords(text, k, d):
 
 def MaxMap(freq_map):
     return max(freq_map.values())
-MismatchedFrequentWords('TTCAGGGGGGGGTGTTTTTTTTTGGTGGGGTTCATTCAGCGGCGTTCAGCGGGTGGGTGGGGTTTGCGGCGGCGGGGTTTGGTGGCGGCGTTCATTTGGTGGGTGGCGGGGTTCATTCAGCGGGGTTCATTTGCGTTTGGTGGGTGTTCAGGGGCGTTTGGTGTTCAGGGGGTGGCGTTCAGCGTTCATTTTTCATTTTTCAGGTGGGTGGGTGTTTGGGGCGTTCATTTGCGTTTGGGTTTGGGGGTGGCGGGTGTTCAGGTGTTTGGTGGCGGGGTTTGCGTTCAGGTGGCGGCGTTCAGGGTTCAGGGTTCATTCAGGGTTCAGGTGTTTTTTTTCAGGTGTTTGGGGCGGGTG', 5, 3)
+genome_file=open('dataset_30278_6 (1).txt','r')
+filedata=genome_file.readlines()
+genome_file.close()
+MismatchedFrequentWords(filedata[1].strip(), filedata[0].strip(),int(filedata[2].strip())) #strip() to remove any whitespace characters   
 
