@@ -14,8 +14,8 @@ def Motif_Matrix(pattern_array):
         count_dict={'A':0,'T':0,'G':0,'C':0}
         for i in range(t):
             count_dict[pattern_array[i][j]]+=1
-            for key in count_dict:
-                profile_matrix.loc[key,k]=count_dict[key]/t
+        for key in count_dict:
+            profile_matrix.loc[key,k]=count_dict[key]/t
     print(profile_matrix)
     return profile_matrix
 
