@@ -4,6 +4,7 @@ takes dna collection of strings, k length of pattern and
 makes first a profile matrix out of the 1st pattern in
 1st string. then finds pattern in 2nd string most closely matching, recalculates
 profile matrix (and so on).
+Profile matrix has implementation of pseudocounts to avoid bias: all bases have a non-zerochance of occurring.
 When finished running over all strings, calculates Score of the
 collection of motifs, if better than before: set as BestScoringMotifs
 then sets reading frame one further on string0
@@ -53,7 +54,7 @@ def motif_matrix(pattern_array):
             profile_matrix[base, i] += 1
 
     #print(profile_matrix / t)
-    return profile_matrix / t
+    return ((profile_matrix+1) /(t+4)) #implementation of pseudocounts so no base has a zero probability of occurring
 
 def most_probable_kmer(text, k, profile):
     nucleotides = 'ATGC'
@@ -72,8 +73,10 @@ def most_probable_kmer(text, k, profile):
 
 
 #print(greedy_motif_search(['GGCGTTCAGGCA', 'AAGAATCAGTCA', 'CAAGGAGTTCGC', 'CACGTCAATCAC', 'CAATAATATTCG'],3))
-f = open("dataset_30305_5.txt", 'r').read().splitlines('\n ')
+f = open("dataset_30306_9.txt", 'r').read().splitlines('\n ')
 print(f[1])
+
+#print(greedy_motif_search(['GGCGTTCAGGCA', 'AAGAATCAGTCA', 'CAAGGAGTTCGC', 'CACGTCAATCAC', 'CAATAATATTCG'],3))
 
 
 print(greedy_motif_search(f[1].split(' '), int(f[0])))
