@@ -15,7 +15,7 @@ import numpy as np
 def random_motif_search(t,k,dna):
     best_motifs=random_kmer_generation(t,k,dna)
     
-    for i in range (1000):
+    for i in range (100):
         prob_matrix = motif_matrix(best_motifs)
         motifs=[]
         for j in range (t):
@@ -26,9 +26,9 @@ def random_motif_search(t,k,dna):
         else:
             return best_motifs
 
-def run_random_motif_search(t,k,dna, iterations=1000): 
+def run_random_motif_search(t,k,dna, iterations=1000):
     """
-    Run the random_motif_search algorithm multiple times to find the best motifs.
+    Run the RandomizedMotifSearch algorithm multiple times to find the best motifs.
     """
     best_motifs = None
     best_score = float('inf')
@@ -96,8 +96,8 @@ def most_probable_kmer(text, k, profile):
 
 
 
-#print(run_random_motif_search(5, 8,['CGCCCCTCTCGGGGGTGTTCAGTAAACGGCCA', 'GGGCGAGGTATGTGTAAGTGCCAAGGTGCCAG', 'TAGTACCGAGACCGAAAGAAGTATACAGGCGT', 'TAGATCAAGTTTCAGGTGCACGTCGGTGAACC', 'AATCCACCAGCTCCACGTGCAATGTTGGCCTA']))
-f = open("dataset_30307_5 (1).txt", 'r').read().strip().splitlines('\n ')
+#print(random_motif_search(5, 8,['CGCCCCTCTCGGGGGTGTTCAGTAAACGGCCA', 'GGGCGAGGTATGTGTAAGTGCCAAGGTGCCAG', 'TAGTACCGAGACCGAAAGAAGTATACAGGCGT', 'TAGATCAAGTTTCAGGTGCACGTCGGTGAACC', 'AATCCACCAGCTCCACGTGCAATGTTGGCCTA']))
+f = open("dataset_30307_5 (3).txt", 'r').read().strip().splitlines('\n ')
 #print(f[1])
 strings = f[2].split(' ')
 #print(strings)
