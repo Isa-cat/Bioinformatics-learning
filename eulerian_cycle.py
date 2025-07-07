@@ -25,12 +25,14 @@ import random
 from collections import deque
 import numpy as np
 import re
+from operator import methodcaller
 
 def eulerian_cycle(adj_list):
     nodes,edges= read_adj_list(adj_list)
     graph_dict=defaultdict(list)
     for i in range(len(nodes)):
         graph_dict[nodes[i]]=edges[i]
+    print(graph_dict)
     start_node=nodes[0]
     current_node=start_node
     last_node=start_node
@@ -64,10 +66,15 @@ def eulerian_cycle(adj_list):
 def read_adj_list(adj_list):
     #nodes=[]
     #edges=[]
+    nodes=[item.split(':')[0] for item in adj_list]
+    #print(nodes)
+    #nodes, edgelist=[node, edges for node, edges in adj_list.split(':')]
+    edges=list(map(str.split,[item.split(':')[1] for item in adj_list]))
     
-    nodes, edgelist=[node, edges for node, edges in adj_list.split(':')]
-    edges.append([edge for edge in re.split(r'\s+',adj_list[i].split(':')[1])])
+    #print(edges)
     return nodes,edges
+
+    #re.split(r'\s+',edge.split(':')
 
 f = open("adj_list.txt", 'r').read().strip().split('\n')
 print(f)
