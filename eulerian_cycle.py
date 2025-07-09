@@ -26,6 +26,7 @@ from collections import deque
 import numpy as np
 import re
 from operator import methodcaller
+import numpy as np
 
 def eulerian_cycle(adj_list):
     nodes,edges= read_adj_list(adj_list)
@@ -37,27 +38,36 @@ def eulerian_cycle(adj_list):
     current_node=start_node
     last_node=start_node
     #paths=[]
-    cycle_path=[start_node]
-    while bool(graph_dict) == True:
-        #cycle_dict=graph_dict
-        print(graph_dict.values())
-        if len(graph_dict[last_node])>1:
-            current_node=graph_dict[last_node][random.randint(0,len(graph_dict[last_node])-1)]
-        else:
-            current_node=graph_dict[last_node]
-        cycle_path.append(current_node)
-        print(current_node)
+    cycle_path=[]
     
-        if graph_dict[last_node] is None:
-            graph_dict.pop(last_node)
-        if (graph_dict[last_node] is not None) and (current_node in graph_dict[last_node]):  
+    while bool(graph_dict) == True:
+        cycle_path.append(current_node)
+        #cycle_dict=graph_dict
+        #print(graph_dict.values())
+        
+        if (len(graph_dict[last_node])>1) and (graph_dict[last_node] is not None):
+            current_node=str(graph_dict[last_node][random.randint(0,len(graph_dict[last_node])-1)])
+        elif graph_dict[last_node] is not None:
+            current_node=str(graph_dict[last_node])
+            
+        print(current_node)
+        print(cycle_path)
+        cycle_path.append(current_node)
+      
+    
+        
+        if (graph_dict[last_node] is not None) and (current_node in graph_dict[last_node]) and (len(graph_dict[last_node])>1):  
             graph_dict[last_node].remove(current_node)
+        elif (graph_dict[last_node] is not None) and (current_node in graph_dict[last_node]) and (len(graph_dict[last_node])==1):
+            graph_dict.pop(last_node)
         if current_node not in graph_dict.keys():
             #paths.append(cycle_path)
             index=random.randint(0,len(cycle_path))
             if start_node in graph_dict.keys():
                 graph_dict[start_node]=graph_dict[start_node].append(cycle_path[cycle_path.index(start_node)+1])
-            cycle_path=deque(cycle_path).rotate(-index)
+        if graph_dict[last_node] is None:
+            graph_dict.pop(last_node)
+        cycle_path=deque(cycle_path).rotate(-index)
         
     return cycle_path
             
@@ -66,7 +76,7 @@ def eulerian_cycle(adj_list):
 def read_adj_list(adj_list):
     #nodes=[]
     #edges=[]
-    nodes=[item.split(':')[0] for item in adj_list]
+    nodes=np.array([item.split(':')[0] for item in adj_list])
     #print(nodes)
     #nodes, edgelist=[node, edges for node, edges in adj_list.split(':')]
     edges=list(map(str.split,[item.split(':')[1] for item in adj_list]))
