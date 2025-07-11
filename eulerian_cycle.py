@@ -39,20 +39,20 @@ def eulerian_cycle(adj_list):
     current_node=start_node
     last_node=start_node
     #paths=[]
-    cycle_path=[current_node]
+    cycle_path=deque(current_node)
     
     while bool(graph_dict) == True:
         #cycle_dict=graph_dict
         #print(graph_dict.values())
-        if last_node in graph_dict.keys():
-            if (len(graph_dict[last_node])>1) and (graph_dict[last_node] is not None): 
-                current_node=str(graph_dict[last_node][random.randint(0,len(graph_dict[last_node])-1)]).strip("'[]'")
-                graph_dict[last_node].remove(current_node)
-            elif (graph_dict[last_node] is not None) and (len(graph_dict[last_node])==1):
-                current_node=str(graph_dict[last_node]).strip("'['']'")
-                graph_dict.pop(last_node)
-            elif graph_dict[last_node] is None:
-                 graph_dict.pop(last_node)
+        #if last_node in graph_dict.keys():
+        if (last_node in graph_dict.keys()) and (len(graph_dict[last_node])>1): 
+            current_node=str(graph_dict[last_node][random.randint(0,len(graph_dict[last_node])-1)]).strip("'[]'")
+            graph_dict[last_node].remove(current_node)
+        elif (last_node in graph_dict.keys()) and (len(graph_dict[last_node])==1):
+            current_node=str(graph_dict[last_node]).strip("'['']'")
+            graph_dict.pop(last_node)
+        elif (last_node in graph_dict.keys()) and (graph_dict[last_node] is None):
+            graph_dict.pop(last_node)
             #assign new curren_node to a value shown in the edge list of the dictionary
         #else:
             
@@ -64,17 +64,23 @@ def eulerian_cycle(adj_list):
         #print(graph_dict)    
                 
         if current_node not in graph_dict.keys():
-            #if the graph dict has had current_node or last_node removed
-            #decide ew starting point (index)
+            #if the graph dict has had current_node removed (-> no way to go further)
+            #decide new starting point (index)
             #paths.append(cycle_path)
-            index=random.randint(0,len(cycle_path))
+            new_index=random.randint(0,len(cycle_path)-1)
             if start_node in graph_dict.keys():
-                graph_dict[start_node]=graph_dict[start_node].append(cycle_path[cycle_path.index(start_node)+1])
+                graph_dict[start_node].append(cycle_path[cycle_path.index(start_node)+1])
                 #if the start node is still available as transit point: add the edge to second node again
                 #so that cycle when start point is changed can go that edge again
-            deque(cycle_path).rotate(-index)
+            elif start_node not in graph_dict.keys():
+                graph_dict[start_node]=list(cycle_path[1])
+            current_node= int(cycle_path[new_index])
+            cycle_path.rotate(-current_node)
+            start_node=cycle_path[0]
+            current_node=cycle_path[-1]
+            last_node=cycle_path[-2]
             print(cycle_path)
-            current_node= cycle_path[-1]
+            
         #cycle_path.append(current_node)
         
     return cycle_path
@@ -96,5 +102,5 @@ def read_adj_list(adj_list):
     #re.split(r'\s+',edge.split(':')
 
 f = open("dataset_30187_2.txt", 'r').read().strip().split('\n')
-print(f)
+#print(f)
 print(" ".join(eulerian_cycle(f)))
