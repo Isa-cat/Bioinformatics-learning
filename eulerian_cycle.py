@@ -24,8 +24,8 @@ from collections import defaultdict
 import random
 from collections import deque
 import numpy as np
-import re
-from operator import methodcaller
+#import re
+#from operator import methodcaller
 import numpy as np
 
 def eulerian_cycle(adj_list):
@@ -36,38 +36,28 @@ def eulerian_cycle(adj_list):
     #print(graph_dict)
     nodes=list(graph_dict.keys())
     start_node=nodes[0]
-    current_node=start_node
     last_node=start_node
-    #paths=[]
-    cycle_path=deque(current_node)
-    
-    while bool(graph_dict)== True:
-        #cycle_dict=graph_dict
-        #print(graph_dict.values())
-        #if last_node in graph_dict.keys():
+    #current_node=str(graph_dict[last_node][random.randint(0,len(graph_dict[last_node])-1)]).strip("'[]'")
+    current_node = start_node
+    cycle_path=deque(last_node)
+    #cycle_path.append(current_node)
+    #last_node=current_node
+    while True:
+        
         if (last_node in graph_dict) and (len(graph_dict[last_node])>1): 
             current_node=str(graph_dict[last_node][random.randint(0,len(graph_dict[last_node])-1)]).strip("'[]'")
             graph_dict[last_node].remove(current_node)
         elif (last_node in graph_dict) and (len(graph_dict[last_node])==1):
             current_node=str(graph_dict[last_node]).strip("'['']'")
             del(graph_dict[last_node])
-        elif (last_node in graph_dict) and (graph_dict[last_node] is None):
-            del(graph_dict[last_node])
-            
-        #print("items in dict :",len(graph_dict.keys()))      
-        last_node=current_node    
-        #print(current_node)
-        print(cycle_path)
-        #print(graph_dict)
-        if current_node in graph_dict:
-            cycle_path.append(current_node)
-        if (current_node not in graph_dict) and (len(graph_dict.keys()) == 0):
-            cycle_path.append(current_node)
+        #elif (last_node in graph_dict) and (graph_dict[last_node] is None):
+            #del(graph_dict[last_node])
+        if current_node not in graph_dict:
             break
-        #print(cycle_path)
-        #print(graph_dict)    
-                 
-        elif (current_node not in graph_dict) and (len(graph_dict.keys()) > 0):
+        cycle_path.append(current_node)
+        last_node=current_node
+    while any(graph_dict.values()):
+        if (current_node not in graph_dict) and (len(graph_dict.keys()) > 0):
             #if the graph dict has had current_node removed (-> no way to go further)
             #decide new starting point (new_index)
             new_index=random.randint(1,len(cycle_path)-1)
@@ -79,8 +69,33 @@ def eulerian_cycle(adj_list):
                 #graph_dict[start_node]=list(cycle_path[1])
             cycle_path.rotate(-new_index-1)
             last_node=cycle_path[-1]
+            #start_node=cycle_path[0]
             print("New_index: ", new_index)
-        
+        while True:
+            #print("items in dict :",len(graph_dict.keys()))      
+            #last_node=current_node    
+            #print(current_node)
+            
+            if (last_node in graph_dict) and (len(graph_dict[last_node])>1): 
+                current_node=str(graph_dict[last_node][random.randint(0,len(graph_dict[last_node])-1)]).strip("'[]'")
+                graph_dict[last_node].remove(current_node)
+            elif (last_node in graph_dict) and (len(graph_dict[last_node])==1):
+                current_node=str(graph_dict[last_node]).strip("'['']'")
+                del(graph_dict[last_node])
+            if (current_node not in graph_dict) and (len(graph_dict.keys()) == 0):
+                cycle_path.append(current_node)
+                break     
+            elif current_node not in graph_dict:
+                break  
+            if (last_node in graph_dict) and (graph_dict[last_node] is None):
+                del(graph_dict[last_node])
+            if current_node in graph_dict:
+                cycle_path.append(current_node)
+            
+                 
+            last_node=current_node
+            #print(cycle_path)
+    cycle_path.append(cycle_path[0])      
     return cycle_path
             
         
@@ -95,7 +110,11 @@ def read_adj_list(adj_list):
     return graph_dict
 
     #re.split(r'\s+',edge.split(':')
-
-f = open("dataset_30187_2.txt", 'r').read().strip().split('\n')
+def write_to_doc(f):    
+    with open("output.txt", "w") as file:
+        file.write(' '.join(eulerian_cycle(f)))
+            
+f = open("dataset_30187_2 (1).txt", 'r').read().strip().split('\n')
 #print(f)
-print(" ".join(eulerian_cycle(f)))
+#print(" ".join(eulerian_cycle(f)))
+write_to_doc(f)
